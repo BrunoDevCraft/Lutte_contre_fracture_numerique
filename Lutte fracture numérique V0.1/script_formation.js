@@ -401,8 +401,8 @@ let quizState = {
                         <h3 style="margin-bottom: 20px;">📚 Imaginez une grande bibliothèque</h3>
                         <div class="grid">
                             <div class="grid-item" style="border-color: #9c27b0;">
-                                <div class="emoji">🚪</div>
-                                <h4>Les Programmes</h4>
+                                <div class="emoji" style="font-size: 48px; text-align: center;">🚪</div>
+                                <h4 style="text-align: center;">Les Programmes</h4>
                                 <p style="margin: 10px 0; color: #9c27b0; font-weight: bold;">=</p>
                                 <p style="font-weight: bold;">Les salles spécialisées</p>
                                 <p style="margin-top: 10px; background: #f3e5f5; padding: 10px; border-radius: 5px;">
@@ -410,8 +410,8 @@ let quizState = {
                                 </p>
                             </div>
                             <div class="grid-item" style="border-color: #4caf50;">
-                                <div class="emoji">📚</div>
-                                <h4>Les Dossiers</h4>
+                                <div class="emoji" style="font-size: 48px; text-align: center;">📚</div>
+                                <h4 style="text-align: center;">Les Dossiers</h4>
                                 <p style="margin: 10px 0; color: #4caf50; font-weight: bold;">=</p>
                                 <p style="font-weight: bold;">Les étagères/rayonnages</p>
                                 <p style="margin-top: 10px; background: #e8f5e9; padding: 10px; border-radius: 5px;">
@@ -419,8 +419,8 @@ let quizState = {
                                 </p>
                             </div>
                             <div class="grid-item" style="border-color: #ff9800;">
-                                <div class="emoji">📖</div>
-                                <h4>Les Fichiers</h4>
+                                <div class="emoji" style="font-size: 48px; text-align: center;">📖</div>
+                                <h4 style="text-align: center;">Les Fichiers</h4>
                                 <p style="margin: 10px 0; color: #ff9800; font-weight: bold;">=</p>
                                 <p style="font-weight: bold;">Les livres</p>
                                 <p style="margin-top: 10px; background: #fff3e0; padding: 10px; border-radius: 5px;">
@@ -1679,4 +1679,5 @@ if (percentage >= 80) {
     resultsTitle.textContent = 'Continuez à vous exercer';
     resultsMessage.textContent = "N'hésitez pas à refaire la formation pour progresser à votre rythme.";
     }
+
     }
