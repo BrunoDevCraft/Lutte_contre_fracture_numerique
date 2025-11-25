@@ -1,0 +1,1491 @@
+/* ============================================================================
+   VARIABLES CSS ET CONFIGURATION GLOBALE
+   ============================================================================ */
+
+:root {
+    --primary: #667eea;
+    --primary-dark: #5568d3;
+    --secondary: #764ba2;
+    --success: #10b981;
+    --warning: #ff9800;
+    --danger: #ef4444;
+    --text: #333;
+    --bg: #f8fafc;
+    --card-bg: white;
+    --shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+/* ============================================================================
+   RESET ET STYLES DE BASE
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+/* ============================================================================
+   MODES D'ACCESSIBILITÉ
+   ============================================================================ */
+
+/* Taille de texte augmentée */
+body.large-text { 
+    font-size: 1.3rem; 
+}
+
+body.xl-text { 
+    font-size: 1.5rem; 
+}
+
+/* Mode contraste élevé */
+body.high-contrast {
+    --bg: #000;
+    --card-bg: #1a1a1a;
+    --text: #fff;
+    background: #000 !important;
+    color: var(--text) !important;
+}
+
+body.high-contrast .card,
+body.high-contrast .card > div,
+body.high-contrast .alert,
+body.high-contrast .alert-info,
+body.high-contrast .alert-success,
+body.high-contrast .alert-warning,
+body.high-contrast .alert-danger,
+body.high-contrast .grid > div,
+body.high-contrast .instructions,
+body.high-contrast .tip,
+body.high-contrast .quiz-option,
+body.high-contrast .explanation {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    background-image: none !important;
+    color: #fff !important;
+    border-color: #444 !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1) !important;
+}
+
+body.high-contrast div[style*="linear-gradient"] {
+    background: #1a1a1a !important;
+    background-image: none !important;
+}
+
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast p,
+body.high-contrast li,
+body.high-contrast strong {
+    color: #fff !important;
+}
+
+body.high-contrast .card h2,
+body.high-contrast .tile h3,
+body.high-contrast #page-summary .card h2 {
+    color: var(--primary) !important;
+}
+
+body.high-contrast [style*="color: #666"],
+body.high-contrast [style*="color: #555"] {
+    color: #fff !important;
+}
+
+body.high-contrast h3[style*="color: var(--primary)"] {
+    color: #ddd !important;
+}
+
+/* ============================================================================
+   BARRE D'OUTILS (TOOLBAR)
+   ============================================================================ */
+
+.toolbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar .left-group {
+    margin-right: auto;
+}
+
+.toolbar .right-group {
+    margin-left: auto;
+}
+
+.accessibility-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.tool-btn {
+    padding: 10px 16px;
+    border: 2px solid var(--primary);
+    background: white;
+    color: var(--primary);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.tool-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+.hidden-btn {
+    display: none !important; 
+}
+
+#back-to-summary-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--primary);
+    background: var(--primary);
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+#back-to-summary-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+#back-to-summary-btn.hidden-btn {
+    display: none !important;
+}
+
+body.high-contrast .toolbar {
+    background: #000;
+    box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+}
+
+body.high-contrast .tool-btn {
+    border-color: #fff;
+    background: #000;
+    color: #fff;
+}
+
+body.high-contrast .tool-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* ============================================================================
+   SYSTÈME DE PAGES ET NAVIGATION
+   ============================================================================ */
+
+.page {
+    display: none;
+    min-height: calc(100vh - 80px);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================================
+   PAGE D'ACCUEIL (LANDING PAGE)
+   ============================================================================ */
+
+.landing-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-page h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* CORRECTION : Règle pour l'alignement robuste du paragraphe principal */
+.landing-text-main {
+    font-size: 1.7rem; 
+    max-width: 900px;
+    margin-bottom: 50px;
+    /* Le centrage horizontal est assuré par le parent (align-items: center) */
+}
+
+
+.emoji-large {
+    font-size: 6rem;
+    margin-bottom: 30px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.btn-large {
+    background: white;
+    color: var(--primary);
+    font-size: 2rem;
+    padding: 25px 60px;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.btn-large:hover {
+    transform: scale(1.08);
+}
+
+/* ============================================================================
+   CONTENEURS ET CARTES
+   ============================================================================ */
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    scroll-margin-top: 70px;
+}
+
+body.high-contrast .card {
+    background: var(--card-bg) !important; 
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border-color: #444; 
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   SYSTÈME DE GRILLE
+   ============================================================================ */
+
+.grid {
+    display: grid;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.grid.three {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* CORRECTION : Règle ajoutée pour garantir l'affichage de 4 vignettes côte à côte sur grands écrans */
+.grid.four {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid.two {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* ============================================================================
+   TUILES ET VIGNETTES
+   ============================================================================ */
+
+.tile {
+    background: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    border: 3px solid transparent;
+}
+
+.tile:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+}
+
+.tile .emoji {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.tile h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+body.high-contrast .grid-item,
+body.high-contrast .tile {
+    background: #2a2a2a !important; 
+    color: #fff !important; 
+    border: 1px solid #555;
+    box-shadow: none;
+}
+
+body.high-contrast .tile:hover {
+    background: #3a3a3a !important;
+}
+
+/* ============================================================================
+   BOUTONS
+   ============================================================================ */
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e9ecef;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #d3d6da;
+}
+
+.btn.small {
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
+body.high-contrast .btn-secondary {
+    background: #444;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+body.high-contrast .btn-secondary:hover {
+    background: #555;
+}
+
+/* ============================================================================
+   NAVIGATION
+   ============================================================================ */
+
+.nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e9ecef;
+}
+
+.buttons-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#prev-btn {
+    flex: 1;
+}
+
+#next-btn {
+    flex: 1;
+}
+
+/* ============================================================================
+   BARRE DE PROGRESSION
+   ============================================================================ */
+
+.progress-bar {
+    background: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+body.high-contrast .progress-bar,
+body.high-contrast .progress-fill {
+    background: #333 !important;
+    border-color: #555 !important;
+}
+
+/* ============================================================================
+   INDICATEURS DE PROGRESSION (DOTS)
+   ============================================================================ */
+
+.dots-row {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.progress-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #e9ecef;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.dot.active {
+    background: var(--primary);
+    transform: scale(1.3);
+}
+
+.dot:hover {
+    transform: scale(1.3);
+}
+
+.dot::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dot:hover::after {
+    transform: translateX(-50%) scale(1);
+}
+
+/* ============================================================================
+   ALERTES
+   ============================================================================ */
+
+.alert {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 5px solid;
+}
+
+.alert-info {
+    background: #e8f5ff;
+    border-left: 6px solid #2196f3;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.alert-success {
+    background: #e8f5e9;
+    border-left: 6px solid #4caf50;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.alert-warning {
+    background: #fff3e0;
+    border-left: 6px solid #ff9800;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.alert-danger {
+    background: #ffebee;
+    border-left: 6px solid #f44336;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.alert-info h4 {
+    margin-top: 0;
+    color: #1565c0;
+}
+
+body.high-contrast .alert-info {
+    background: #1e3a5f !important;
+    border-color: #2196f3 !important;
+    color: #fff !important;
+}
+
+body.high-contrast .alert-success {
+    background: #1e4620 !important;
+    border-color: #4caf50 !important;
+    color: #fff !important;
+}
+
+body.high-contrast .alert-warning {
+    background: #5f3a1e !important;
+    border-color: #ff9800 !important;
+    color: #fff !important;
+}
+
+body.high-contrast .alert-info h4,
+body.high-contrast .alert-info p {
+    color: #fff !important;
+}
+
+/* ============================================================================
+   QUIZ
+   ============================================================================ */
+
+.quiz-question {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.quiz-options {
+    display: grid;
+    gap: 15px;
+}
+
+.quiz-option {
+    background: white;
+    border: 2px solid #e9ecef;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    font-weight: bold;
+}
+
+.quiz-option:hover:not(.disabled) {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.quiz-option.correct {
+    background: #e8f5e9;
+    border-color: var(--success);
+}
+
+.quiz-option.wrong {
+    background: #ffebee;
+    border-color: var(--danger);
+}
+
+.quiz-option.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.explanation {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f0f4ff;
+    border-left: 4px solid var(--primary);
+    text-align: left;
+    font-size: 0.95em;
+    font-style: italic;
+}
+
+.quiz-results {
+    text-align: center;
+}
+
+.results-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.results-title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.results-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.results-score-container {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--success);
+    margin-bottom: 20px;
+}
+
+/* ============================================================================
+   DIPLOME
+   ============================================================================ */
+
+.diplome {
+    background: #fff url('diploma-bg.png') no-repeat center center;
+    background-size: cover;
+    border: 15px double #667eea;
+    padding: 100px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    position: relative;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto; /* Permet à la hauteur de s'ajuster */
+    min-height: 500px;
+}
+
+.diplome::before {
+    content: '';
+    position: absolute;
+    border: 4px solid #667eea;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 0;
+}
+
+.diplome h1 {
+    color: var(--secondary);
+    font-size: 3.5rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
+}
+
+.diplome .name {
+    font-size: 4rem;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 30px 0;
+    border-bottom: 5px double var(--primary);
+    padding-bottom: 10px;
+}
+
+.diplome p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.diplome strong {
+    color: var(--success);
+}
+
+.diplome-corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary);
+}
+
+.diplome-corner.top-left {
+    top: 25px;
+    left: 25px;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+}
+
+.diplome-corner.top-right {
+    top: 25px;
+    right: 25px;
+    border-left: none;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+}
+
+.diplome-corner.bottom-left {
+    bottom: 25px;
+    left: 25px;
+    border-right: none;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+}
+
+.diplome-corner.bottom-right {
+    bottom: 25px;
+    right: 25px;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 10px;
+}
+
+/* ============================================================================
+   DÉMARCHES
+   ============================================================================ */
+
+.demarche-tile {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid #e9ecef;
+    text-align: center;
+}
+
+.demarche-tile:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.demarche-tile .emoji {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.demarche-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #e9ecef;
+}
+
+.demarche-item:hover {
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.instructions {
+    background: white;
+    border: 1px solid #EDE9FE;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.instructions h4 {
+    color: var(--primary);
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #EDE9FE;
+    padding-bottom: 10px;
+}
+
+.guide-steps {
+    list-style: none;
+    padding: 0;
+}
+
+.guide-steps li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.guide-steps li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* ============================================================================
+   JEU (GAMIFICATION)
+   ============================================================================ */
+
+.level-row {
+    /* Nouvelle règle pour une grille de 4 colonnes sur grands écrans */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Min 200px pour 4 colonnes */
+    gap: 20px;
+    margin: 40px 0;
+}
+
+/* Grille pour les vignettes de jeu */
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+    grid-template-rows: repeat(2, auto); /* 2 lignes */
+    gap: 20px;
+    margin: 40px 0;
+}
+
+/* Style des vignettes */
+.level-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 16px;
+    border: 3px solid #e9ecef;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+}
+
+.level-card.active {
+    border: 3px solid var(--primary);
+}
+
+.level-card.completed {
+    border: 3px solid var(--success);
+}
+
+
+.badge {
+    background: #e9ecef;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #e9ecef;
+}
+
+.task:hover {
+    border-color: var(--primary);
+}
+
+.task.completed {
+    background: #e8f5e9;
+    border-color: var(--success);
+}
+
+.task-dot {
+    width: 30px;
+    height: 30px;
+    background: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--success);
+}
+
+.task.completed .task-dot {
+    background: var(--success);
+    color: white;
+}
+
+.points {
+    margin-left: auto;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.tip {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+.game-instructions-list {
+    counter-reset: instruction-counter;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.game-instructions-list li {
+    counter-increment: instruction-counter;
+    margin-bottom: 20px;
+    padding-left: 45px;
+    position: relative;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-instructions-list li::before {
+    content: counter(instruction-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.3em;
+    top: 0;
+}
+
+/* ============================================================================
+   COURS (GÉNÉRAL)
+   ============================================================================ */
+
+.course-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.course-header h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.course-header .emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.course-content-block {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.course-content-block h3 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #eee;
+}
+
+.course-image-illustration {
+    max-width: 80%;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-image-illustration:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================================================
+   ÉLÉMENTS DIVERS
+   ============================================================================ */
+
+.list-style {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-style li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+}
+
+.list-style li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+.score-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin: 20px 0;
+}
+
+/* ============================================================================
+   ALIGNEMENT ET CENTRAGE
+   ============================================================================ */
+
+.page h1, .page h2, .page h3, .page > p, .page .container > p, #page-demarches .container > h2, #page-demarches .container > p, .demarche-tile, .level-card h2, .exercise-card h4, #page-results .results-content, #page-demarches #demarches-content h3, .card h2, .card h3, .card p { 
+    text-align: center; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+
+/* ============================================================================
+   IMPRESSION (CORRIGÉE)
+   ============================================================================ */
+@media print {
+    /* 1. Format Paysage */
+    @page {
+        size: landscape; /* Définit l'orientation paysage */
+        margin: 1cm;
+    }
+
+    /* 2. Afficher uniquement la page active et désactiver les animations */
+    .page:not(.active) {
+        display: none !important; /* Masque toutes les pages non actives */
+    }
+
+    .page.active {
+        display: block !important;
+        opacity: 1 !important;
+        animation: none !important; /* Désactive les animations */
+        max-width: 100%;
+        overflow: visible;
+    }
+    
+    /* 3. Forcer l'impression en couleur (fonds et textes fidèles) */
+    * {
+        /* Propriétés non-standard pour forcer l'impression en couleur/fonds */
+        -webkit-print-color-adjust: exact !important; 
+        color-adjust: exact !important; 
+    }
+    
+    /* RÈGLES DE BASE POUR MASQUER LES ÉLÉMENTS D'INTERFACE */
+    body { background: white !important; }
+    .toolbar, .nav-row, .btn, .accessibility-btns, button { 
+        display: none !important; 
+    }
+
+    /* Améliorer l'apparence des cartes et du diplôme sur papier */
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        margin-bottom: 20px;
+    }
+
+    /* Le diplôme doit toujours s'afficher correctement sur une page */
+    .diplome { 
+        page-break-inside: avoid; 
+        box-shadow: none; 
+        border: 10px double #667eea; 
+        padding: 80px; 
+        margin: 0 auto; 
+        max-width: 100%; 
+    }
+    
+    .diplome::before { 
+        border: 4px solid #667eea; 
+        top: 20px; 
+        left: 20px; 
+        right: 20px; 
+        bottom: 20px; 
+    }
+    
+    /* Assurer que les pages de diplôme actives restent visibles */
+    #page-diplome.active, 
+    #page-diplome4.active { 
+        display: block !important; 
+    }
+
+    /* S'assurer que les titres et textes du diplôme restent noirs (ou colorés si `exact` fonctionne) */
+    .diplome h1, 
+    .diplome p, 
+    .diplome .name {
+        color: #333 !important;
+    }
+
+    .diplome strong {
+        color: var(--success) !important;
+    }
+
+    /* Pour forcer l'affichage du contenu des cours */
+    #page-course.active .card,
+    #page-course4.active .card,
+    #page-summary.active .card,
+    #page-demarches.active .card {
+        display: block !important;
+        page-break-inside: avoid;
+    }
+}
+
+
+/* ============================================================================
+   RESPONSIVE DESIGN ET MEDIA QUERIES
+   ============================================================================ */
+
+@media (max-width: 900px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .card {
+        padding: 30px 20px;
+    }
+    
+    .landing-page h1 {
+        font-size: 2.5rem;
+    }
+    
+    .btn-large {
+        font-size: 1.5rem;
+        padding: 20px 40px;
+    }
+
+    .diplome {
+        padding: 50px;
+        min-height: 400px;
+    }
+
+    .diplome h1 {
+        font-size: 2.5rem;
+    }
+
+    .diplome .name {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .toolbar .left-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .toolbar .right-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .accessibility-btns {
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tool-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .quiz-option {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    .guide-steps li::before {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    .guide-steps li {
+        padding-left: 35px;
+    }
+
+    .guide-steps li::before {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9em;
+    }
+
+    .course-image-illustration {
+        max-width: 90%;
+    }
+
+    #back-to-summary-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .course-image-illustration {
+        max-width: 90%;
+    }
+}
+
+/* ============================================================================
+   CORRECTIONS POUR LE MODE CONTRASTE ÉLEVÉ
+   ============================================================================ */
+
+/* Correction des tableaux en mode contraste */
+body.high-contrast table {
+    background: #1a1a1a !important;
+}
+
+body.high-contrast table thead tr {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+body.high-contrast table th {
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+body.high-contrast table tbody tr {
+    background: #1a1a1a !important;
+}
+
+body.high-contrast table td {
+    color: #fff !important;
+    border-color: #444 !important;
+}
+
+body.high-contrast table td strong {
+    color: var(--primary) !important;
+}
+
+/* Correction des badges/spans dans les tableaux */
+body.high-contrast table td span[style*="background"] {
+    background: #333 !important;
+    color: #fff !important;
+    border: 1px solid #666 !important;
+}
+
+/* Correction des sections colorées dans le cours */
+body.high-contrast .card > div[style*="background: linear-gradient"], 
+body.high-contrast .card > div[style*="background:linear-gradient"] {
+    background: #1a1a1a !important;
+    background-image: none !important;
+    border: 1px solid #444 !important;
+    color: #fff !important;
+}
+
+/* Correction des emojis pour les rendre plus visibles */
+body.high-contrast .emoji-large,
+body.high-contrast .tile .emoji,
+body.high-contrast .diplome h1::before {
+    filter: grayscale(100%) brightness(1.2);
+}
+
+/* Correction des boutons de quiz */
+body.high-contrast .quiz-option {
+    background: #2a2a2a !important;
+    color: #fff !important;
+    border: 2px solid #666 !important;
+}
+
+body.high-contrast .quiz-option:hover:not(.disabled) {
+    background: #3a3a3a !important;
+    border-color: var(--primary) !important;
+}
+
+/* Correction des tooltips */
+body.high-contrast .dot::after {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #000 !important;
+}
+
+/* Correction des divs avec texte centré */
+body.high-contrast div[style*="text-align: center"] {
+    color: #fff !important;
+}
+
+/* Correction spécifique pour les cartes imbriquées */
+body.high-contrast .card .card {
+    background: #2a2a2a !important;
+    color: #fff !important;
+}
+
+/* Correction des grilles de présentation */
+body.high-contrast .grid.two > div, 
+body.high-contrast .grid.three > div {
+    background: #2a2a2a !important;
+    color: #fff !important;
+    border: 1px solid #555 !important;
+}
+
+/* Correction des icônes de grande taille */
+body.high-contrast div[style*="font-size: 2.5em"], 
+body.high-contrast div[style*="font-size: 3em"] {
+    opacity: 0.9;
+}
+
+/* Correction des sections avec padding important */
+body.high-contrast div[style*="padding: 35px"], 
+body.high-contrast div[style*="padding: 30px"], 
+body.high-contrast div[style*="padding: 25px"] {
+    background: #2a2a2a !important;
+}
+
+/* Correction des bordures gauches colorées */
+body.high-contrast .alert-info h4 {
+    color: var(--primary) !important;
+}
+
+/* Correction des résultats du quiz */
+body.high-contrast #page-results .results-content {
+    background: #1a1a1a !important;
+}
+
+body.high-contrast .results-score {
+    color: var(--success) !important;
+}
+
+/* Correction des codes inline (si présents) */
+body.high-contrast code,
+body.high-contrast kbd {
+    background: #2a2a2a !important;
+    color: #fff !important;
+    border: 1px solid #555 !important;
+}
+
+/* Amélioration du contraste des titres */
+body.high-contrast h1 {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+body.high-contrast h2 {
+    color: var(--primary) !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+body.high-contrast h3 {
+    color: #ddd !important;
+}
+
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+    color: #ccc !important;
+}
+
+/* Correction des sections spécifiques du cours */
+body.high-contrast #course-content > div {
+    color: #fff !important;
+}
+
+body.high-contrast #course-content div[class*="card"] {
+    background: #1a1a1a !important;
+    color: #fff !important;
+}
+
+/* Amélioration de la lisibilité des emojis larges */
+body.high-contrast .emoji-large {
+    filter: grayscale(100%) brightness(1.2);
+}
