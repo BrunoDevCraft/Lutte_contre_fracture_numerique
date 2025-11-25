@@ -1,6 +1,3 @@
-Voici une version retravaillée de votre README, avec une mise en page plus aérée, des emojis pour guider la lecture, et une structure visuelle optimisée pour GitHub :
-
----
 
 # **🌍 Lutte contre la Fracture Numérique pour l'Inclusion**
 *Une application web éducative, accessible et open-source pour rendre le numérique simple et inclusif.*
@@ -120,4 +117,5 @@ lutte-fracture-numerique/
 
 ---
 **🌟 Partagez ce projet pour réduire la fracture numérique !**
+
 *Un petit ⭐ [star] sur GitHub ? Ça motive énormément !* 🚀
