@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Informatique de Base</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --success: #10b981;
+            --warning: #ff9800;
+            --text: #333;
+            --bg: #f8fafc;
+            --card-bg: white;
+            --light: #f1f5f9;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e2e8f0;
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --light: #1e293b;
+            }
+        }
+        
+        body.dark {
+            --text: #e2e8f0;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --light: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            font-size: 1.1rem;
+        }
+        
+        body.dark {
+            background: #1e293b;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        body.dark .container {
+            background: #f1f5f9;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .toolbar {
+            padding: 15px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+        }
+        
+        body.dark .toolbar {
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .toolbar button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+        
+        .toolbar button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        body.dark .toolbar button {
+            background: #667eea;
+        }
+
+        .content {
+            padding: 40px;
+            animation: fadeIn 0.8s;
+            background: white;
+        }
+        
+        body.dark .content {
+            background: #1e293b;
+            color: #333;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            color: #667eea;
+        }
+        
+        body.dark .section-title {
+            color: #667eea;
+        }
+
+        .section-icon {
+            font-size: 2em;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .card {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 4px solid #667eea;
+        }
+
+        .grid-item .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .grid-item h4 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .grid-item p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d3d6da;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e9ecef;
+            transition: all 0.3s;
+            cursor: pointer;  /* Ajout du curseur pointer */
+        }
+
+        .dot:hover {
+            transform: scale(1.5);  /* Agrandit au survol */
+            background: #667eea;
+            opacity: 0.7;
+        }
+
+        .dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        .dot.active:hover {
+            transform: scale(1.5);  /* Encore plus grand au survol quand actif */
+        }
+
+        /* Optionnel : Ajouter un effet de feedback visuel au clic */
+        .dot:active {
+            transform: scale(1.1);
+        }
+
+        .quiz-container {
+            text-align: center;
+        }
+
+        .quiz-progress {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .quiz-question {
+            font-size: 1.5em;
+            margin: 30px 0;
+            color: #333;
+        }
+        
+        body.dark .quiz-question {
+            color: #333;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-option {
+            padding: 20px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateX(10px);
+        }
+        
+        body.dark .quiz-option {
+            background: #334155;
+            border-color: #475569;
+            color: #333;
+        }
+        
+        body.dark .quiz-option:hover {
+            background: #e2e8f0;
+            border-color: #667eea;
+        }
+
+        .correct {
+            border-color: #10b981 !important;
+            background: #ecfdf5 !important;
+        }
+
+        .wrong {
+            border-color: #ef4444 !important;
+            background: #fee2e2 !important;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fefce8;
+            border-left: 5px solid #f59e0b;
+            border-radius: 8px;
+            display: none;
+            text-align: left;
+        }
+
+        .results {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results .icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .results h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .results .score {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #667eea;
+        }
+
+        .results .percentage {
+            font-size: 2em;
+            color: #666;
+        }
+
+        #diplome {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2e8f0 100%);
+            border: 10px double #667eea;
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            display: none;
+        }
+        
+        #diplome h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        
+        #diplome p {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1565c0;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            border-color: #ff9800;
+            color: #e65100;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .list-style {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-style li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .list-style li:before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+        }
+
+        button:focus, .quiz-option:focus {
+            outline: 3px solid #667eea;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3em;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            .toolbar, .navigation, #quizSection, .btn {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+            .card {
+                border: 1px solid #aaa;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Formation Informatique de Base</h1>
+            <p>Apprenez l'informatique facilement et sans stress</p>
+        </div>
+
+        <div class="toolbar">
+            <button onclick="changeFontSize(-2)">A-</button>
+            <button onclick="changeFontSize(0)" id="resetFont">A</button>
+            <button onclick="changeFontSize(4)">A+</button>
+            <button onclick="toggleDark()">🌙 Mode sombre</button>
+            <button onclick="speakSection()">🔊 Écouter</button>
+            <button onclick="window.print()">🖨️ Imprimer</button>
+        </div>
+
+        <div class="content">
+            <div id="courseSection">
+                <div class="section-title">
+                    <span class="section-icon" id="sectionIcon">📖</span>
+                    <h2 id="sectionTitle">Chargement...</h2>
+                </div>
+                
+                <div id="sectionContent"></div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousSection()">
+                        ← Précédent
+                    </button>
+                    
+                    <div class="progress-dots" id="progressDots"></div>
+                    
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextSection()">
+                        Suivant →
+                    </button>
+                </div>
+            </div>
+
+            <div id="quizSection" class="hidden">
+                <div class="quiz-container">
+                    <h2 style="margin-bottom:30px;">Quiz de validation</h2>
+                    <div class="quiz-progress">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span id="questionNumber">Question 1 / 25</span>
+                            <span id="quizScore" style="color: #10b981; font-weight: bold;">Score: 0</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="quizProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <h3 class="quiz-question" id="quizQuestion"></h3>
+                    
+                    <div class="quiz-options" id="quizOptions"></div>
+                    
+                    <div id="explanation" class="explanation"></div>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="hidden">
+                <div class="results">
+                    <div class="icon" id="resultsIcon">🎉</div>
+                    <h2 id="resultsTitle">Félicitations !</h2>
+                    <p id="resultsMessage" style="font-size: 1.3em; margin-bottom: 20px;"></p>
+                    
+                    <div class="score" id="finalScore">0 / 25</div>
+                    <div class="percentage" id="finalPercentage">0%</div>
+                    
+                    <div class="progress-bar" style="margin: 30px auto; max-width: 500px;">
+                        <div class="progress-fill" id="finalProgressBar" style="width: 0%"></div>
+                    </div>
+
+                    <div style="margin:40px 0;">
+                        <input type="text" id="userName" placeholder="Votre prénom pour le diplôme" 
+                            style="padding:12px; font-size:1.2em; border-radius:8px; border:2px solid #ccc; width:300px; margin-right: 10px;">
+                        <button class="btn btn-success" onclick="generateDiploma()">📜 Générer mon diplôme</button>
+                        <button class="btn btn-success" onclick="printDiploma()" style="margin-left: 10px;">🖨️ Imprimer / PDF</button>
+                    </div>
+
+                    <div id="diplome">
+                        <h1>🎓 Diplôme d'Informatique de Base</h1>
+                        <p>Décerné avec fierté à</p>
+                        <h2 style="font-size:2.5em; color:#667eea; margin: 20px 0;" id="diplomaName"></h2>
+                        <p>pour avoir complété avec succès la formation<br>et obtenu <span id="diplomaScore" style="font-weight: bold; color: #10b981;"></span></p>
+                        <p>Fait le <span id="diplomaDate"></span></p>
+                        <p style="margin-top:40px; font-style:italic;">Continuez à explorer le monde numérique !</p>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="restartQuiz()">
+                            🔄 Recommencer le quiz
+                        </button>
+                        <button class="btn btn-secondary" onclick="backToCourse()">
+                            📚 Revoir le cours
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = [
+                // SECTION 0 : Slide d'introduction principale
+            {
+                icon: "👋",
+                title: "Bienvenue dans votre formation",
+                content: `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 8em; margin-bottom: 30px; animation: bounce 2s infinite;">
+                            🎯
+                        </div>
+                        
+                        <style>
+                            @keyframes bounce {
+                                0%, 100% { transform: translateY(0); }
+                                50% { transform: translateY(-20px); }
+                            }
+                        </style>
+                        
+                        <h2 style="font-size: 2.5em; color: #667eea; margin-bottom: 30px;">
+                            Bienvenue dans votre formation informatique !
+                        </h2>
+                        
+                        <div class="card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: none; max-width: 800px; margin: 30px auto; text-align: left;">
+                            <h3 style="text-align: center; margin-bottom: 25px; color: #2e7d32;">
+                                ✨ Cette formation est faite pour vous si :
+                            </h3>
+                            <ul class="list-style" style="font-size: 1.15em; line-height: 2;">
+                                <li>Vous débutez avec l'ordinateur</li>
+                                <li>Vous trouvez l'informatique intimidante</li>
+                                <li>Vous voulez comprendre simplement comment ça marche</li>
+                                <li>Vous préférez des explications concrètes aux termes techniques</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 50px; padding: 30px; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 15px; max-width: 800px; margin: 50px auto 0;">
+                            <h3 style="font-size: 1.8em; color: #7b1fa2; margin-bottom: 20px;">
+                                🚀 Prêt(e) à commencer ?
+                            </h3>
+                            <p style="font-size: 1.2em; color: #555; line-height: 1.8;">
+                                Cliquez sur <strong>"Suivant"</strong> pour débuter cette aventure !<br>
+                                Prenez votre temps, tout est conçu pour être facile et rassurant.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 1 : Ce que vous allez découvrir
+            {
+                icon: "🎁",
+                title: "Ce que vous allez découvrir",
+                content: `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 6em; margin-bottom: 30px;">🎁</div>
+                        
+                        <h2 style="font-size: 2.2em; color: #667eea; margin-bottom: 40px;">
+                            Votre programme d'apprentissage
+                        </h2>
+
+                        <div class="card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border: none; max-width: 800px; margin: 30px auto;">
+                            <h3 style="margin-bottom: 30px; color: #1565c0; font-size: 1.5em;">
+                                🎁 Ce que vous allez découvrir :
+                            </h3>
+                            <div class="grid" style="gap: 20px;">
+                                <div style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 3.5em; margin-bottom: 15px;">📚</div>
+                                    <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Des métaphores simples</p>
+                                    <p style="font-size: 1em; color: #666;">L'ordinateur comme une bibliothèque</p>
+                                </div>
+                                <div style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 3.5em; margin-bottom: 15px;">🎨</div>
+                                    <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Des explications visuelles</p>
+                                    <p style="font-size: 1em; color: #666;">Faciles à mémoriser</p>
+                                </div>
+                                <div style="background: white; padding: 25px; border-radius: 10px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 3.5em; margin-bottom: 15px;">🎯</div>
+                                    <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Des exercices pratiques</p>
+                                    <p style="font-size: 1em; color: #666;">Pour mettre en pratique</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info" style="max-width: 800px; margin: 40px auto; text-align: left; font-size: 1.1em;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <span style="font-size: 1.5em;">💡</span>
+                                Notre approche
+                            </h4>
+                            <p style="line-height: 1.8;">
+                                Nous utilisons des <strong>comparaisons de la vie quotidienne</strong> pour expliquer l'informatique. 
+                                Pas de jargon, pas de stress, juste de la logique et du bon sens !
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 2 : Durée de la formation
+            {
+                icon: "⏱️",
+                title: "Durée et organisation",
+                content: `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 6em; margin-bottom: 30px;">⏱️</div>
+                        
+                        <h2 style="font-size: 2.2em; color: #667eea; margin-bottom: 40px;">
+                            Organisation de votre formation
+                        </h2>
+
+                        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 40px; border-radius: 15px; max-width: 800px; margin: 40px auto; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                            <h3 style="color: #e65100; margin-bottom: 30px; font-size: 1.8em;">
+                                ⏱️ Durée de la formation
+                            </h3>
+                            <p style="font-size: 1.3em; line-height: 1.9; color: #333; margin-bottom: 20px;">
+                                Environ <strong style="color: #667eea;">30 à 45 minutes</strong> à votre rythme
+                            </p>
+                            <p style="font-size: 1.2em; color: #666;">
+                                Suivie d'un quiz pour valider vos connaissances
+                            </p>
+                        </div>
+
+                        <div class="grid" style="max-width: 900px; margin: 40px auto; gap: 20px;">
+                            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <div style="font-size: 3em; margin-bottom: 15px;">📖</div>
+                                <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.3em;">Partie théorique</h4>
+                                <p style="color: #666; line-height: 1.6;">Concepts expliqués simplement avec des exemples concrets</p>
+                            </div>
+                            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <div style="font-size: 3em; margin-bottom: 15px;">✅</div>
+                                <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.3em;">Quiz final</h4>
+                                <p style="color: #666; line-height: 1.6;">25 questions pour valider votre apprentissage</p>
+                            </div>
+                            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <div style="font-size: 3em; margin-bottom: 15px;">🎓</div>
+                                <h4 style="color: #667eea; margin-bottom: 10px; font-size: 1.3em;">Diplôme</h4>
+                                <p style="color: #666; line-height: 1.6;">Obtenez votre certificat de réussite !</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 3 : Pourquoi "ordinateur" fait peur
+            {
+                icon: "😰",
+                title: "Pourquoi ce mot fait-il peur ?",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-color: #ec407a; padding: 35px;">
+                        <div style="text-align: center; margin-bottom: 40px;">
+                            <div style="font-size: 6em; margin-bottom: 20px;">😰</div>
+                            <h2 style="font-size: 2.2em; color: #c2185b; margin-bottom: 20px;">
+                                "Ordinateur" : Un mot qui impressionne
+                            </h2>
+                            <p style="font-size: 1.3em; line-height: 1.8; color: #555;">
+                                Mais pourquoi donc ?
+                            </p>
+                        </div>
+
+                        <div style="background: white; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                            <h3 style="color: #667eea; margin-bottom: 25px; text-align: center; font-size: 1.5em;">
+                                🤔 Les 3 raisons principales
+                            </h3>
+                            
+                            <div style="display: grid; gap: 25px; margin-bottom: 30px;">
+                                <div style="display: flex; align-items: start; gap: 20px; background: #fff3e0; padding: 25px; border-radius: 12px; border-left: 5px solid #ff9800;">
+                                    <span style="font-size: 3em;">🔮</span>
+                                    <div>
+                                        <h4 style="margin-bottom: 12px; color: #e65100; font-size: 1.3em;">1. Il semble "mystérieux"</h4>
+                                        <p style="color: #666; line-height: 1.7; font-size: 1.1em;">On ne voit pas comment ça marche à l'intérieur, comme une boîte noire magique</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: start; gap: 20px; background: #e3f2fd; padding: 25px; border-radius: 12px; border-left: 5px solid #2196f3;">
+                                    <span style="font-size: 3em;">🧠</span>
+                                    <div>
+                                        <h4 style="margin-bottom: 12px; color: #1565c0; font-size: 1.3em;">2. Il a l'air "intelligent"</h4>
+                                        <p style="color: #666; line-height: 1.7; font-size: 1.1em;">On pense qu'il réfléchit... alors qu'en réalité, il est plutôt bête !</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: start; gap: 20px; background: #f3e5f5; padding: 25px; border-radius: 12px; border-left: 5px solid #9c27b0;">
+                                    <span style="font-size: 3em;">💬</span>
+                                    <div>
+                                        <h4 style="margin-bottom: 12px; color: #7b1fa2; font-size: 1.3em;">3. Le vocabulaire est compliqué</h4>
+                                        <p style="color: #666; line-height: 1.7; font-size: 1.1em;">Logiciel, système, interface, bug... mais on va tout simplifier !</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success" style="margin-top: 30px; font-size: 1.1em;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <span style="font-size: 1.5em;">✨</span>
+                                La bonne nouvelle
+                            </h4>
+                            <p style="line-height: 1.8;">
+                                Toutes ces craintes sont <strong>infondées</strong> ! Dans les prochaines pages (/slides), 
+                                nous allons démystifier tout ça ensemble.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 4 : Ce n'est PAS un génie
+            {
+                icon: "🤖",
+                title: "La vérité : ce n'est pas un génie",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 3px solid #4caf50; padding: 35px;">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <div style="font-size: 6em; margin-bottom: 20px;">🤖</div>
+                            <h2 style="font-size: 2.2em; color: #2e7d32; margin-bottom: 20px;">
+                                Ce n'est PAS un génie
+                            </h2>
+                        </div>
+
+                        <div style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <div style="display: flex; align-items: center; gap: 25px; margin-bottom: 20px;">
+                                <span style="font-size: 5em;">🎭</span>
+                                <div style="flex: 1;">
+                                    <h3 style="font-size: 1.6em; color: #1b5e20; margin-bottom: 15px;">
+                                        Un assistant très obéissant
+                                    </h3>
+                                    <p style="font-size: 1.2em; color: #555; line-height: 1.8;">
+                                        L'ordinateur fait <strong>EXACTEMENT</strong> ce que vous lui demandez.
+                                        Ni plus, ni moins.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #fff3e0; padding: 30px; border-radius: 12px; margin: 25px 0; border: 2px solid #ff9800;">
+                            <h3 style="color: #e65100; margin-bottom: 20px; font-size: 1.4em;">
+                                💡 Exemples concrets :
+                            </h3>
+                            <ul class="list-style" style="font-size: 1.1em; line-height: 2;">
+                                <li><strong>Vous cliquez</strong> sur "Enregistrer" → il enregistre</li>
+                                <li><strong>Vous tapez</strong> une lettre → elle apparaît</li>
+                                <li><strong>Vous donnez</strong> une mauvaise instruction → il la suit quand même</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-warning" style="font-size: 1.1em;">
+                            <h4 style="margin-bottom: 15px; font-size: 1.2em;">🎯 Retenez ceci :</h4>
+                            <p style="line-height: 1.8;">
+                                Si ça fonctionne → <strong>il vous a suivi</strong><br>
+                                Si ça ne fonctionne pas → <strong>il vous a... suivi aussi !</strong>
+                            </p>
+                            <p style="margin-top: 15px; font-style: italic; color: #666;">
+                                Pas de magie, seulement de la logique.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 5 : Il ne juge pas
+            {
+                icon: "🎯",
+                title: "Vous pouvez faire des erreurs !",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border: 3px solid #2196f3; padding: 35px;">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <div style="font-size: 6em; margin-bottom: 20px;">🎯</div>
+                            <h2 style="font-size: 2.2em; color: #1565c0; margin-bottom: 20px;">
+                                L'ordinateur ne vous juge pas
+                            </h2>
+                        </div>
+
+                        <div style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                            <h3 style="color: #667eea; margin-bottom: 25px; text-align: center; font-size: 1.6em;">
+                                ✅ Vous avez le droit de :
+                            </h3>
+                            
+                            <div style="display: grid; gap: 20px;">
+                                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 5px solid #4caf50;">
+                                    <h4 style="font-size: 1.2em; margin-bottom: 10px; color: #2e7d32;">👆 Cliquer partout</h4>
+                                    <p style="color: #666; line-height: 1.6;">Explorez sans crainte, vous ne casserez rien !</p>
+                                </div>
+                                
+                                <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-left: 5px solid #ff9800;">
+                                    <h4 style="font-size: 1.2em; margin-bottom: 10px; color: #e65100;">🔄 Vous tromper</h4>
+                                    <p style="color: #666; line-height: 1.6;">Les erreurs sont normales et font partie de l'apprentissage</p>
+                                </div>
+                                
+                                <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 5px solid #9c27b0;">
+                                    <h4 style="font-size: 1.2em; margin-bottom: 10px; color: #7b1fa2;">⏱️ Prendre votre temps</h4>
+                                    <p style="color: #666; line-height: 1.6;">L'ordinateur attendra patiemment vos instructions</p>
+                                </div>
+                                
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px; border-left: 5px solid #ec407a;">
+                                    <h4 style="font-size: 1.2em; margin-bottom: 10px; color: #c2185b;">🔍 Essayer plusieurs fois</h4>
+                                    <p style="color: #666; line-height: 1.6;">Aucune limite au nombre de tentatives !</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success" style="font-size: 1.15em;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <span style="font-size: 1.5em;">🎉</span>
+                                Rassurez-vous !
+                            </h4>
+                            <p style="line-height: 1.8;">
+                                Contrairement à un examen, <strong>il n'y a pas de mauvaise note</strong>. 
+                                L'ordinateur ne se moque pas, ne s'énerve pas, et ne vous sanctionne pas.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            
+            // SECTION 6 : Tout peut être annulé
+            {
+                icon: "🔄",
+                title: "Le pouvoir magique : CTRL + Z",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border: 3px solid #ff9800; padding: 35px;">
+                        <div style="text-align: center; margin-bottom: 30px;">
+                            <div style="font-size: 6em; margin-bottom: 20px;">🔄</div>
+                            <h2 style="font-size: 2.2em; color: #e65100; margin-bottom: 20px;">
+                                Presque tout peut être annulé !
+                            </h2>
+                        </div>
+
+                        <div style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <div style="background: #667eea; color: white; padding: 20px 40px; border-radius: 12px; display: inline-block; font-size: 2em; font-weight: bold; font-family: monospace;">
+                                    CTRL + Z
+                                </div>
+                                <p style="margin-top: 20px; font-size: 1.3em; color: #666;">
+                                    La combinaison magique pour annuler
+                                </p>
+                            </div>
+
+                            <h3 style="color: #667eea; margin-bottom: 25px; text-align: center; font-size: 1.5em;">
+                                ✨ Comment ça marche ?
+                            </h3>
+                            
+                            <div style="background: #f5f5f5; padding: 25px; border-radius: 10px; margin-bottom: 25px;">
+                                <ol style="font-size: 1.1em; line-height: 2; color: #333; padding-left: 25px;">
+                                    <li>Maintenez la touche <strong>CTRL</strong> (ou <strong>CMD</strong> sur Mac)</li>
+                                    <li>Appuyez sur la touche <strong>Z</strong></li>
+                                    <li>Votre dernière action est annulée !</li>
+                                </ol>
+                            </div>
+
+                            <h4 style="color: #ff9800; margin: 25px 0 15px; font-size: 1.3em;">
+                                📋 Exemples d'utilisation :
+                            </h4>
+                            <ul class="list-style" style="font-size: 1.05em; line-height: 1.9;">
+                                <li>Vous avez supprimé un texte par erreur → <strong>CTRL + Z</strong></li>
+                                <li>Vous avez déplacé un fichier au mauvais endroit → <strong>CTRL + Z</strong></li>
+                                <li>Vous avez appliqué une mauvaise mise en forme → <strong>CTRL + Z</strong></li>
+                                <li>Vous avez dessiné quelque chose que vous n'aimez pas → <strong>CTRL + Z</strong></li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #e8f5e9; padding: 25px; border-radius: 12px; border: 2px solid #4caf50;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; color: #2e7d32; font-size: 1.3em;">
+                                <span style="font-size: 1.5em;">💡</span>
+                                Astuce bonus
+                            </h4>
+                            <p style="font-size: 1.1em; line-height: 1.8; color: #555;">
+                                Vous pouvez appuyer plusieurs fois sur <strong>CTRL + Z</strong> pour annuler 
+                                plusieurs actions d'affilée. C'est comme une <strong>machine à remonter le temps</strong> !
+                            </p>
+                        </div>
+
+                        <div class="alert alert-warning" style="margin-top: 25px; font-size: 1.05em;">
+                            <p style="line-height: 1.8;">
+                                <strong>⚠️ Attention :</strong> Certaines actions ne peuvent pas être annulées 
+                                (comme supprimer définitivement un fichier de la corbeille). 
+                                Mais dans 95% des cas, <strong>CTRL + Z</strong> vous sauvera !
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {icon:"😊",title:"Alors, rassuré(e) ?",content:`<div class="card" style="background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:3px solid #2196f3;padding:35px"><div style="text-align:center;margin-bottom:30px"><div style="font-size:6em;margin-bottom:20px">😰 ➜ 😊</div><h2 style="font-size:2.2em;color:#1565c0;margin-bottom:20px">Récapitulons !</h2></div><div style="background:white;padding:35px;border-radius:12px;margin-bottom:30px;box-shadow:0 6px 20px rgba(0,0,0,0.1)"><h3 style="color:#667eea;margin-bottom:30px;text-align:center;font-size:1.6em">📋 Ce que vous avez appris :</h3><div style="display:grid;gap:20px"><div style="background:#e8f5e9;padding:20px;border-radius:10px;border-left:5px solid #4caf50"><p style="font-size:1.1em;line-height:1.7">✅ L'ordinateur n'est <strong>pas un génie</strong>, c'est un assistant obéissant</p></div><div style="background:#fff3e0;padding:20px;border-radius:10px;border-left:5px solid #ff9800"><p style="font-size:1.1em;line-height:1.7">✅ Il ne vous <strong>juge pas</strong> et vous pouvez faire des erreurs</p></div><div style="background:#f3e5f5;padding:20px;border-radius:10px;border-left:5px solid #9c27b0"><p style="font-size:1.1em;line-height:1.7">✅ Presque tout peut être <strong>annulé</strong> avec CTRL+Z</p></div><div style="background:#e3f2fd;padding:20px;border-radius:10px;border-left:5px solid #2196f3"><p style="font-size:1.1em;line-height:1.7">✅ C'est comme une <strong>télécommande</strong> : vous êtes aux commandes</p></div></div></div><div style="background:linear-gradient(135deg,#f3e5f5 0%,#e1bee7 100%);padding:35px;border-radius:15px;text-align:center"><h3 style="font-size:2em;color:#7b1fa2;margin-bottom:20px">🎉 Prêt(e) pour la suite ?</h3><p style="font-size:1.3em;line-height:1.8;color:#333;margin-bottom:25px">Maintenant que vous êtes rassuré(e), découvrons ensemble comment fonctionne concrètement un ordinateur avec des comparaisons simples !</p><div style="background:white;padding:25px;border-radius:12px;display:inline-block;margin-top:20px"><p style="font-size:1.2em;color:#667eea;font-weight:bold;margin:0">👉 Continuons l'aventure !</p></div></div></div>`},
+            {
+                icon: "📖",
+                title: "L'ordinateur : Une bibliothèque bien organisée",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-color: #2196f3;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">🌟</span>
+                            Comprendre l'ordinateur sans stress
+                        </h3>
+                        <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
+                            Un ordinateur, c'est un peu comme une <strong>bibliothèque moderne</strong> ou comme un <strong>grand centre commercial</strong> : 
+                            au début, on est impressionné... puis, dès qu'on en comprend l'organisation, tout devient logique.
+                        </p>
+                        <p style="color: #555; line-height: 1.6;">
+                            Dans ce cours, nous allons découvrir l'ordinateur étape par étape, avec des images simples et concrètes, sans jargon compliqué.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="margin-bottom: 20px;">📚 Imaginez une grande bibliothèque</h3>
+                        <div class="grid">
+                            <div class="grid-item" style="border-color: #9c27b0;">
+                                <div class="emoji">🚪</div>
+                                <h4>Les Programmes</h4>
+                                <p style="margin: 10px 0; color: #9c27b0; font-weight: bold;">=</p>
+                                <p style="font-weight: bold;">Les salles spécialisées</p>
+                                <p style="margin-top: 10px; background: #f3e5f5; padding: 10px; border-radius: 5px;">
+                                    Salle des vidéos, salle d'écriture, salle de musique...
+                                </p>
+                            </div>
+                            <div class="grid-item" style="border-color: #4caf50;">
+                                <div class="emoji">📚</div>
+                                <h4>Les Dossiers</h4>
+                                <p style="margin: 10px 0; color: #4caf50; font-weight: bold;">=</p>
+                                <p style="font-weight: bold;">Les étagères/rayonnages</p>
+                                <p style="margin-top: 10px; background: #e8f5e9; padding: 10px; border-radius: 5px;">
+                                    Où vous rangez vos documents par thème
+                                </p>
+                            </div>
+                            <div class="grid-item" style="border-color: #ff9800;">
+                                <div class="emoji">📖</div>
+                                <h4>Les Fichiers</h4>
+                                <p style="margin: 10px 0; color: #ff9800; font-weight: bold;">=</p>
+                                <p style="font-weight: bold;">Les livres</p>
+                                <p style="margin-top: 10px; background: #fff3e0; padding: 10px; border-radius: 5px;">
+                                    Photos, textes, vidéos, musiques...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <span style="font-size: 1.5em;">💡</span>
+                            Pourquoi cette métaphore ?
+                        </h4>
+                        <p style="line-height: 1.6;">
+                            Parce que, comme une bibliothèque, <strong>c'est vous qui organisez tout</strong> : 
+                            par thème, par date, par projet... Vous êtes le bibliothécaire.
+                        </p>
+                    </div>
+                `
+            },
+            {
+                icon: "🧠",
+                title: "L'unité centrale : Le cerveau obéissant",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-color: #9c27b0;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">🧠</span>
+                            Le cerveau de l'ordinateur
+                        </h3>
+                        <p style="font-size: 1.1em; margin-bottom: 15px;">
+                            C'est le <strong>cerveau</strong> de l'ordinateur... mais attention :
+                        </h3>
+                        
+                        <div class="alert" style="background: #ffebee; border-color: #f44336; color: #c62828; margin: 20px 0;">
+                            <p style="font-weight: bold; font-size: 1.1em;">
+                                ➡️ Il NE réfléchit PAS : il exécute exactement ce que vous lui demandez.
+                            </p>
+                        </div>
+
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                            <div style="text-align: center; font-size: 4em; margin-bottom: 20px;">🖥️</div>
+                            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #2196f3;">
+                                <p style="font-weight: bold; margin-bottom: 10px;">Comme un assistant très obéissant :</p>
+                                <ul class="list-style" style="margin-left: 20px;">
+                                    <li>Si ça fonctionne, il vous a suivi</li>
+                                    <li>Si ça ne fonctionne pas, il vous a... suivi aussi</li>
+                                </ul>
+                            </div>
+                            <div class="alert alert-warning">
+                                <p style="font-weight: bold; text-align: center;">Pas de magie, seulement de la logique.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "🖥️",
+                title: "L'écran : Votre fenêtre sur le monde numérique",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%); border-color: #3f51b5;">
+                        <h3 style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">🖥️</span>
+                            L'écran : Votre fenêtre sur le monde numérique
+                        </h3>
+                        <div style="background: white; padding: 30px; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 5em; margin-bottom: 20px;">🪟</div>
+                            <p style="font-size: 1.2em; line-height: 1.8; margin-bottom: 30px;">
+                                L'écran est comme la <strong>vitrine</strong> ou la <strong>fenêtre</strong> de votre bibliothèque :<br>
+                                il vous montre tout ce qui se passe à l’intérieur de l’ordinateur.
+                            </p>
+                            <div class="alert alert-info" style="max-width: 700px; margin: 0 auto;">
+                                <p style="font-size: 1.1em;">
+                                    Sans écran → vous êtes dans le noir complet !<br>
+                                    C’est lui qui affiche les images, les textes, les vidéos…
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "🖱️",
+                title: "La souris : Votre main virtuelle",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #4caf50;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">🖱️</span>
+                            La souris : Votre main dans la bibliothèque numérique
+                        </h3>
+
+                        <div style="display: grid; gap: 20px;">
+                            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                                <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="font-size: 1.5em;">👆</span>
+                                    Clic simple
+                                </h4>
+                                <p style="color: #666;">Sélectionner (toucher un livre)</p>
+                            </div>
+
+                            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                                <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="font-size: 1.5em;">👆👆</span>
+                                    Double clic
+                                </h4>
+                                <p style="color: #666;">Ouvrir (ouvrir un livre)</p>
+                            </div>
+
+                            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                                <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="font-size: 1.5em;">🖱️</span>
+                                    Clic droit
+                                </h4>
+                                <p style="color: #666;">Options (comme demander conseil au bibliothécaire)</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning" style="margin-top: 20px;">
+                            <h4 style="margin-bottom: 10px;">💡 Astuce :</h4>
+                            <p>La plupart des actions peuvent être <strong>annulées</strong>, donc pas de panique !</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "⌨️",
+                title: "Le clavier : Votre outil d'écriture",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-color: #ff9800; padding: 25px; border-radius: 12px;">
+                        <h3 style="display: flex; align-items: center; gap: 12px; margin-bottom: 25px; font-size: 1.6em;">
+                            <span style="font-size: 2.2em;">⌨️</span>
+                            Le clavier : Comme un cahier ou une machine à écrire
+                        </h3>
+
+                        <div style="background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                            <div class="grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px;">
+                                <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 1.3em;">
+                                    A • Z • E
+                                </div>
+                                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 1.3em;">
+                                    1 • 2 • 3
+                                </div>
+                                <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 1.3em;">
+                                    @ • # • %
+                                </div>
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 1.1em;">
+                                    Entrée<br>Suppr
+                                </div>
+                            </div>
+
+                            <ul class="list-style" style="margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
+                                <li>Lettres</li>
+                                <li>Chiffres</li>
+                                <li>Symboles</li>
+                                <li>Touches de commande</li>
+                            </ul>
+
+                            <div class="alert alert-warning" style="margin-top: 25px; padding: 15px; border-radius: 10px; font-size: 1.1em;">
+                                <p style="font-weight: bold; margin: 0;">
+                                    C'est votre manière de <em>dialoguer</em> avec l'ordinateur.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📂",
+                title: "L'explorateur de fichiers : Votre plan de bibliothèque",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%); border-color: #fbc02d;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">📂</span>
+                            L'explorateur de fichiers = Le plan de votre bibliothèque
+                        </h3>
+
+                        <p style="font-size: 1.1em; margin-bottom: 30px; line-height: 1.6;">
+                            Il vous permet de <strong>voir, organiser et retrouver</strong> vos documents.
+                        </p>
+
+                        <div class="grid" style="margin-bottom: 30px;">
+                            <div style="background: #e3f2fd; padding: 25px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.2em;">À gauche</h4>
+                                <p style="font-size: 1em; color: #666;">Les grandes sections (Documents, Images, Téléchargements...)</p>
+                            </div>
+                            <div style="background: #e8f5e9; padding: 25px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.2em;">Au centre</h4>
+                                <p style="font-size: 1em; color: #666;">Le contenu du dossier que vous visitez</p>
+                            </div>
+                            <div style="background: #f3e5f5; padding: 25px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.2em;">En haut</h4>
+                                <p style="font-size: 1em; color: #666;">L'adresse : "où vous êtes"</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info" style="font-size: 1.1em;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <span style="font-size: 1.5em;">💡</span>
+                                Astuce
+                            </h4>
+                            <p style="line-height: 1.6;">
+                                Comme dans une bibliothèque, vous pouvez naviguer de section en section pour trouver ce que vous cherchez !
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📁",
+                title: "Les dossiers : Vos étagères/rayonnages ",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-color: #4caf50;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">📁</span>
+                            Les dossiers = Vos étagères
+                        </h3>
+
+                        <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 25px;">
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <div style="font-size: 5em; margin-bottom: 20px;">📁</div>
+                                <p style="font-size: 1.2em; line-height: 1.6;">
+                                    Un dossier est comme une <strong>étagère</strong> ou une <strong>boîte</strong> où vous rangez vos documents.
+                                </p>
+                            </div>
+
+                            <h4 style="margin-bottom: 20px; font-size: 1.3em;">Vous pouvez y mettre :</h4>
+                            <ul class="list-style" style="font-size: 1.1em; line-height: 2;">
+                                <li>Documents</li>
+                                <li>Photos</li>
+                                <li>Vidéos</li>
+                                <li>Ou d'autres sous-dossiers</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-info" style="font-size: 1.05em;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <span style="font-size: 1.5em;">📝</span>
+                                Exemple concret
+                            </h4>
+                            <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                                <p style="margin-bottom: 10px; font-weight: bold;">Dossier « Vacances » →</p>
+                                <ul style="margin-left: 30px; line-height: 1.8;">
+                                    <li>→ Sous-dossier « Été 2024 »</li>
+                                    <li>→ Sous-dossier « Hiver 2025 »</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning" style="margin-top: 25px;">
+                            <h4 style="margin-bottom: 10px;">💡 Astuce :</h4>
+                            <p>Comme des boîtes dans des boîtes, vous pouvez créer autant de niveaux que nécessaire ! Tout comme le jeu des poupées russes</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📄",
+                title: "Les fichiers : Vos livres numériques",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-color: #2196f3;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">📄</span>
+                            Les fichiers = Vos livres
+                        </h3>
+
+                        <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 25px;">
+                            <p style="font-size: 1.15em; margin-bottom: 30px; line-height: 1.6; text-align: center;">
+                                Un fichier, c'est comme un <strong>livre, une photo ou un DVD</strong> dans votre bibliothèque.
+                            </p>
+
+                            <div style="display: grid; gap: 20px;">
+                                <div style="display: flex; align-items: center; gap: 15px; background: #e3f2fd; padding: 20px; border-radius: 10px;">
+                                    <span style="font-size: 2.5em;">📷</span>
+                                    <div>
+                                        <h4>Une photo</h4>
+                                        <p style="color: #666;">Un livre illustré</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 15px; background: #e8f5e9; padding: 20px; border-radius: 10px;">
+                                    <span style="font-size: 2.5em;">📄</span>
+                                    <div>
+                                        <h4>Un texte</h4>
+                                        <p style="color: #666;">Une lettre ou un document</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 15px; background: #f3e5f5; padding: 20px; border-radius: 10px;">
+                                    <span style="font-size: 2.5em;">🎬</span>
+                                    <div>
+                                        <h4>Une vidéo</h4>
+                                        <p style="color: #666;">Un DVD ou un film</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #fff3e0; padding: 25px; border-radius: 10px; border: 2px solid #ff9800;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 1.2em;">
+                                <span style="font-size: 1.5em;">🏷️</span>
+                                Chaque fichier a :
+                            </h4>
+                            <ul class="list-style" style="font-size: 1.1em; line-height: 2;">
+                                <li>Un <strong>nom</strong> (comme un titre de livre)</li>
+                                <li>Une <strong>extension</strong> (.jpg, .pdf, .docx) qui indique le type de document</li>
+                            </ul>
+
+                            <div class="alert alert-info" style="margin-top: 20px; background: white;">
+                                <p style="font-weight: bold; margin-bottom: 10px;">🔍 Exemples d'extensions :</p>
+                                <ul style="margin-left: 20px; line-height: 1.8;">
+                                    <li>.jpg ou .png → une image</li>
+                                    <li>.pdf → un document</li>
+                                    <li>.mp4 → une vidéo</li>
+                                    <li>.mp3 → une musique</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "🌐",
+                title: "Internet : Un immense centre commercial",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e8eaf6, #c5cae9); border-color: #5c6bc0; padding: 25px; border-radius: 12px;">
+                        <h3 style="display: flex; align-items: center; gap: 12px; margin-bottom: 25px; font-size: 1.6em;">
+                            <span style="font-size: 2.2em;">🌐</span>
+                            Internet : Un gigantesque centre commercial numérique
+                        </h3>
+
+                        <div class="grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 35px;">
+                            <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">🌐 Le navigateur</h4>
+                                <p style="font-size: 0.95em; color: #555;">L'enseigne qui vous permet d'entrer<br>(Chrome, Firefox, Edge...)</p>
+                            </div>
+
+                            <div style="background: #e8f5e9; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">🏪 Les sites web</h4>
+                                <p style="font-size: 0.95em; color: #555;">Les magasins</p>
+                            </div>
+
+                            <div style="background: #f3e5f5; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">🚪 Les liens</h4>
+                                <p style="font-size: 0.95em; color: #555;">Des portes magiques</p>
+                            </div>
+
+                            <div style="background: #fff3e0; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">🔍 La barre de recherche</h4>
+                                <p style="font-size: 0.95em; color: #555;">Le plan du centre</p>
+                            </div>
+
+                            <div style="background: #fce4ec; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">📑 Les onglets</h4>
+                                <p style="font-size: 0.95em; color: #555;">Plusieurs magasins ouverts</p>
+                            </div>
+
+                            <div style="background: #fffde7; padding: 20px; border-radius: 12px; text-align: center;">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1em;">⬇️ Télécharger</h4>
+                                <p style="font-size: 0.95em; color: #555;">Ramener un objet chez vous</p>
+                            </div>
+                        </div>
+
+                        <div style="background: #ffebee; padding: 25px; border-radius: 12px; border: 2px solid #f44336;">
+                            <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 1.2em; color: #c62828;">
+                                <span style="font-size: 1.5em;">🔒</span>
+                                Rester en sécurité
+                            </h4>
+
+                            <ul class="list-style" style="padding-left: 20px; line-height: 1.6;">
+                                <li>Ne partagez jamais vos données personnelles</li>
+                                <li>Méfiez-vous des liens suspects</li>
+                                <li>Vérifiez la présence du <strong>cadenas</strong> dans la barre d'adresse</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "✉️",
+                title: "Les e-mails : Votre boîte aux lettres numérique",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-color: #ec407a;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">✉️</span>
+                            Les e-mails : Une vraie boîte aux lettres, mais instantanée
+                        </h3>
+
+                        <div style="background: white; padding: 40px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 5em; margin-bottom: 30px;">✉️</div>
+                            <p style="font-size: 1.2em; margin-bottom: 30px;">
+                                Votre adresse e-mail = une vraie <strong>boîte aux lettres</strong>, mais instantanée !
+                            </p>
+
+                            <div class="grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px;">
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">📧</div>
+                                    <p style="font-weight: bold;">Textes</p>
+                                </div>
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">📷</div>
+                                    <p style="font-weight: bold;">Photos</p>
+                                </div>
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">📄</div>
+                                    <p style="font-weight: bold;">Documents</p>
+                                </div>
+                                <div style="background: #fce4ec; padding: 20px; border-radius: 10px;">
+                                    <div style="font-size: 2.5em; margin-bottom: 10px;">🧾</div>
+                                    <p style="font-weight: bold;">Factures</p>
+                                </div>
+                            </div>
+
+                            <p style="margin-top: 30px; color: #666;">
+                                Vous pouvez envoyer et recevoir tout cela instantanément !
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "💼",
+                title: "Le Bureau : Votre table de travail numérique",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); border-color: #26a69a;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">💼</span>
+                            Le Bureau : Votre table de travail
+                        </h3>
+
+                        <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 20px;">
+                            <p style="font-size: 1.1em; margin-bottom: 15px; line-height: 1.6;">
+                                Imaginez que vous soyez dans votre bibliothèque, devant <strong>votre table de travail</strong>.
+                            </p>
+                            <p style="color: #666; margin-bottom: 30px; line-height: 1.6;">
+                                Le bureau de votre ordinateur, c'est exactement cela.
+                            </p>
+
+                            <div style="display: grid; gap: 20px;">
+                                <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                                    <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                        <span style="font-size: 1.3em;">🎯</span>
+                                        Icônes
+                                    </h4>
+                                    <p style="color: #666; margin-bottom: 10px;">Comme des livres ou outils posés sur votre table</p>
+                                    <p style="font-size: 0.85em; color: #888;">
+                                        Exemple : « Ce PC » ou « Explorateur de fichiers » = une porte vers toutes vos étagères
+                                    </p>
+                                </div>
+
+                                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                                    <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                        <span style="font-size: 1.3em;">📊</span>
+                                        Barre des tâches (en bas)
+                                    </h4>
+                                    <p style="color: #666;">Comme une étagère où sont rangés vos outils préférés</p>
+                                </div>
+
+                                <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                                    <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                        <span style="font-size: 1.3em;">🖼️</span>
+                                        Fond d'écran
+                                    </h4>
+                                    <p style="color: #666;">La décoration derrière la table</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <h4 style="margin-bottom: 10px;">💡 Astuce :</h4>
+                            <p>Vous pouvez déplacer, ranger ou supprimer les icônes comme des objets sur une vraie table.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📑",
+                title: "Les Onglets : Plusieurs livres ouverts",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border-color: #00bcd4;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">📑</span>
+                            Les Onglets : Plusieurs livres ouverts en même temps
+                        </h3>
+
+                        <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 20px;">
+                            <p style="font-size: 1.1em; margin-bottom: 20px; line-height: 1.6;">
+                                Dans un navigateur (et parfois dans d'autres programmes), les onglets sont comme :
+                            </p>
+
+                            <div style="background: #e3f2fd; padding: 25px; border-radius: 10px; border: 2px solid #2196f3; margin-bottom: 30px;">
+                                <p style="font-size: 1.2em; text-align: center; font-weight: bold;">
+                                    ➡️ <strong>Plusieurs livres ou magazines ouverts sur votre table</strong>, chacun à une page différente.
+                                </p>
+                            </div>
+
+                            <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+                                <h4 style="margin-bottom: 15px;">À quoi servent-ils ?</h4>
+                                <p style="color: #666; line-height: 1.6;">
+                                    À passer rapidement d'un site ou d'un document à un autre, sans tout fermer.
+                                </p>
+                            </div>
+
+                            <h4 style="margin-bottom: 20px; font-size: 1.2em;">Raccourcis utiles :</h4>
+                            <div style="display: grid; gap: 15px;">
+                                <div style="display: flex; align-items: center; gap: 15px; background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                                    <span style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 5px; font-family: monospace; font-weight: bold;">
+                                        Ctrl + T
+                                    </span>
+                                    <span>Ouvrir un nouvel onglet</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px; background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                                    <span style="background: #4caf50; color: white; padding: 8px 15px; border-radius: 5px; font-family: monospace; font-weight: bold;">
+                                        Ctrl + Tab
+                                    </span>
+                                    <span>Passer à l'onglet suivant</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px; background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                                    <span style="background: #9c27b0; color: white; padding: 8px 15px; border-radius: 5px; font-family: monospace; font-weight: bold;">
+                                        Croix (×)
+                                    </span>
+                                    <span>Fermer un onglet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "🚪",
+                title: "Les Programmes : Vos salles spécialisées",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #ede7f6 0%, #d1c4e9 100%); border-color: #7e57c2;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 2em;">🚪</span>
+                            Les Programmes : Les salles de votre bibliothèque
+                        </h3>
+
+                        <p style="font-size: 1.1em; margin-bottom: 30px; line-height: 1.6;">
+                            Revenons à la bibliothèque : elle possède plusieurs salles.
+                        </p>
+
+                        <div class="grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
+                            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                                <h4 style="margin-bottom: 10px;">📝 Word</h4>
+                                <p style="color: #666;">La salle d'écriture</p>
+                            </div>
+                            <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; border-left: 4px solid #4caf50;">
+                                <h4 style="margin-bottom: 10px;">📊 Excel</h4>
+                                <p style="color: #666;">La salle des comptes et registres</p>
+                            </div>
+                            <div style="background: #f3e5f5; padding: 20px; border-radius: 10px; border-left: 4px solid #9c27b0;">
+                                <h4 style="margin-bottom: 10px;">🎬 VLC</h4>
+                                <p style="color: #666;">La salle de cinéma</p>
+                            </div>
+                            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; border-left: 4px solid #ff9800;">
+                                <h4 style="margin-bottom: 10px;">🌐 Navigateur</h4>
+                                <p style="color: #666;">La salle des plans et annuaires</p>
+                            </div>
+                            <div style="background: #fce4ec; padding: 20px; border-radius: 10px; border-left: 4px solid #ec407a;">
+                                <h4 style="margin-bottom: 10px;">🎮 Jeu vidéo</h4>
+                                <p style="color: #666;">La salle de jeux</p>
+                            </div>
+                        </div>
+
+                        <div style="background: white; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                            <h4 style="margin-bottom: 20px; font-size: 1.2em;">Comment reconnaître un programme ?</h4>
+                            <div style="display: grid; gap: 20px;">
+                                <div style="display: flex; align-items: start; gap: 15px;">
+                                    <span style="font-size: 2em;">🎯</span>
+                                    <div>
+                                        <p style="font-weight: bold;">Une icône</p>
+                                        <p style="font-size: 0.9em; color: #666;">(comme une enseigne)</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: start; gap: 15px;">
+                                    <span style="font-size: 2em;">🪟</span>
+                                    <div>
+                                        <p style="font-weight: bold;">Une fenêtre quand il s'ouvre</p>
+                                        <p style="font-size: 0.9em; color: #666;">(comme entrer dans la salle)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <h4 style="margin-bottom: 15px;">💡 Astuces :</h4>
+                            <ul class="list-style">
+                                <li><strong>Pour ouvrir</strong> → double clic</li>
+                                <li><strong>Pour fermer</strong> → la croix en haut à droite</li>
+                                <li><strong>Si le programme "plante"</strong> → fermez et rouvrez (comme rallumer la lumière)</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📊",
+                title: "Tableau récapitulatif : Les métaphores",
+                content: `
+                    <div class="card" style="background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); border-color: #667eea;">
+                        <h3 style="text-align: center; font-size: 2em; margin-bottom: 30px;">
+                            📊 Tableau récapitulatif
+                        </h3>
+                        <div style="overflow-x: auto; margin-bottom: 30px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Notion</th>
+                                        <th>Métaphore Bibliothèque</th>
+                                        <th>Métaphore Centre commercial</th>
+                                        <th>Action sur l'ordinateur</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Bureau</strong></td>
+                                        <td>Table de travail</td>
+                                        <td>Comptoir</td>
+                                        <td>Icônes, fond d'écran, barre des tâches</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Programme</strong></td>
+                                        <td>Salle spécialisée</td>
+                                        <td>Magasin spécialisé</td>
+                                        <td>Double-clic, croix</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Onglet</strong></td>
+                                        <td>Livres ouverts dans une salle</td>
+                                        <td>Magasins ouverts</td>
+                                        <td>Ctrl+T, Ctrl+Tab, croix</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "📌",
+                title: "Points clés à retenir",
+                content: `
+                    <div class="card" style="background: #e8f5e9; padding: 25px; border-radius: 10px; border: 2px solid #4caf50; margin-bottom: 30px;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 1.5em;">📌</span>
+                            Points clés à retenir
+                        </h3>
+                        <div class="grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">💼 Le bureau</h4>
+                                <p style="font-size: 0.9em; color: #666;">Votre espace de travail, personnalisable</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">📑 Les onglets</h4>
+                                <p style="font-size: 0.9em; color: #666;">Plusieurs activités en parallèle</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">🚪 Les programmes</h4>
+                                <p style="font-size: 0.9em; color: #666;">Des salles spécialisées</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">📚 L'ordinateur</h4>
+                                <p style="font-size: 0.9em; color: #666;">Une grande bibliothèque organisée</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">🌐 Internet</h4>
+                                <p style="font-size: 0.9em; color: #666;">Un immense centre commercial</p>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h4 style="margin-bottom: 10px;">🎯 Vous</h4>
+                                <p style="font-size: 0.9em; color: #666;">Le chef d'orchestre qui organise tout</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "🎯",
+                title: "Exercices pratiques suggérés",
+                content: `
+                    <div class="card" style="background: #e3f2fd; padding: 25px; border-radius: 10px; border: 2px solid #2196f3; margin-bottom: 30px;">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                            <span style="font-size: 1.5em;">🎯</span>
+                            Exercices pratiques suggérés
+                        </h3>
+                        <div style="display: grid; gap: 20px;">
+                            <div style="background: white; padding: 20px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;">🖥️ Sur le bureau</h4>
+                                <ul class="list-style" style="font-size: 0.9em; color: #666;">
+                                    <li>Créer un dossier « Vacances »</li>
+                                    <li>Déplacez-le comme un livre sur une table</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;">🌐 Avec les onglets</h4>
+                                <ul class="list-style" style="font-size: 0.9em; color: #666;">
+                                    <li>Ouvrez 3 onglets : Google, YouTube, un site d'actualités</li>
+                                    <li>Passez de l'un à l'autre avec Ctrl+Tab</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; padding: 20px; border-radius: 10px;">
+                                <h4 style="margin-bottom: 10px;">🧰 Avec les programmes</h4>
+                                <ul class="list-style" style="font-size: 0.9em; color: #666;">
+                                    <li>Ouvrez la Calculatrice</li>
+                                    <li>Ouvrez Word</li>
+                                    <li>Passez de l'un à l'autre via la barre des tâches</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                icon: "✅",
+                title: "Fin du cours : Félicitations !",
+                content: `
+                    <div class="card">
+                        <div class="alert alert-success" style="text-align: center; padding: 30px;">
+                            <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">
+                                ✅ Félicitations, vous avez terminé le cours !
+                            </p>
+                            <p style="font-size: 1.1em; margin-bottom: 10px;">
+                                Testez maintenant vos connaissances avec le quiz
+                            </p>
+                            <p style="font-size: 0.9em; color: #666;">
+                                Cliquez sur "Commencer le Quiz" pour évaluer votre compréhension
+                            </p>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        const quizQuestions = [
+            { question: "Un ordinateur peut être comparé à :", options: ["Une voiture", "Une bibliothèque", "Un réfrigérateur", "Un téléphone"], correct: 1, explanation: "Un ordinateur est comme une bibliothèque : organisé, avec des sections (programmes), des étagères (dossiers) et des livres (fichiers).", section: 0 },
+            { question: "Dans cette comparaison, les programmes sont :", options: ["Les livres", "Les salles spécialisées", "Les étagères", "Les bibliothécaires"], correct: 1, explanation: "Les programmes sont comme des salles spécialisées : la salle d'écriture (Word), la salle de calcul (Excel), etc.", section: 13 },
+            { question: "Dans cette même comparaison, les dossiers sont :", options: ["Les étagères", "Les journaux", "Les chaises", "Les portes"], correct: 0, explanation: "Les dossiers sont comme des étagères où vous rangez vos documents par thème.", section: 6 },
+            { question: "Les fichiers représentent :", options: ["Des vitres", "Des clés", "Des livres", "Des fenêtres"], correct: 2, explanation: "Les fichiers sont comme des livres dans votre bibliothèque : chacun contient des informations (texte, image, vidéo, etc.).", section: 7 },
+            { question: "L'unité centrale sert principalement à :", options: ["Afficher les images", "Stocker les crayons", "Exécuter des instructions", "Faire du bruit"], correct: 2, explanation: "L'unité centrale est le cerveau de l'ordinateur. Elle exécute les instructions que vous lui donnez.", section: 1 },
+            { question: "L'écran sert à :", options: ["Montrer ce que fait l'ordinateur", "Écrire du texte seul", "Faire du son", "Éteindre l'ordinateur"], correct: 0, explanation: "L'écran est comme une vitrine : il vous montre ce qui se passe dans l'ordinateur.", section: 2 },
+            { question: "La souris permet :", options: ["De cuisiner", "De sélectionner, ouvrir et accéder aux options", "De créer de la musique", "De refroidir l'ordinateur"], correct: 1, explanation: "La souris est votre main virtuelle : clic simple pour sélectionner, double clic pour ouvrir, clic droit pour les options.", section: 3 },
+            { question: "Le clavier sert à :", options: ["Copier les fichiers", "Écrire et donner des commandes", "Agrandir l'écran", "Ranger les dossiers"], correct: 1, explanation: "Le clavier est votre outil d'écriture et de dialogue avec l'ordinateur.", section: 4 },
+            { question: "L'Explorateur de fichiers sert à :", options: ["Éteindre le PC", "Voir et organiser les documents", "Aller sur Internet", "Faire des calculs"], correct: 1, explanation: "L'Explorateur de fichiers est le plan de votre bibliothèque numérique. Il vous permet de naviguer et d'organiser vos documents.", section: 5 },
+            { question: "Un dossier sert à :", options: ["Regarder des films", "Ranger des fichiers ou d'autres dossiers", "Installer l'imprimante", "Faire du son"], correct: 1, explanation: "Un dossier est comme une boîte ou un rayonnage où vous rangez vos fichiers et d'autres sous-dossiers.", section: 6 },
+            { question: "Un fichier est :", options: ["Une salle", "Un livre numérique (texte, photo, vidéo...)", "Un fil électrique", "Une enceinte"], correct: 1, explanation: "Un fichier est comme un livre numérique : il peut contenir du texte, des images, des vidéos, de la musique, etc.", section: 7 },
+            { question: "Une extension de fichier (.jpg, .pdf...) indique :", options: ["Le prix du fichier", "Le type de document", "Le poids du fichier en kilos", "La couleur de l'icône"], correct: 1, explanation: "L'extension indique le type de fichier : .jpg pour une image, .pdf pour un document, .mp4 pour une vidéo, etc.", section: 7 },
+            { question: "Le navigateur Internet sert à :", options: ["Ranger les dossiers", "Entrer sur Internet", "Déplacer les icônes", "Éteindre l'ordinateur"], correct: 1, explanation: "Le navigateur (Chrome, Firefox, Edge) est votre porte d'entrée vers Internet, comme l'enseigne d'un centre commercial.", section: 8 },
+            { question: "Un site web peut être comparé à :", options: ["Une boîte aux lettres", "Un magasin", "Un ticket de métro", "Un ballon"], correct: 1, explanation: "Un site web est comme un magasin dans le centre commercial d'Internet : chacun a sa spécialité.", section: 8 },
+            { question: "Un lien est :", options: ["Une porte qui mène ailleurs", "Un stylo", "Une prise électrique", "Une musique"], correct: 0, explanation: "Un lien est comme une porte magique qui vous transporte instantanément vers une autre page ou un autre site.", section: 8 },
+            { question: "Un onglet permet :", options: ["D'ouvrir une fenêtre dans la vraie vie", "D'avoir plusieurs pages ouvertes", "De zoomer automatiquement", "De vider la corbeille"], correct: 1, explanation: "Les onglets sont comme plusieurs livres ouverts sur votre table : vous pouvez passer rapidement de l'un à l'autre.", section: 12 },
+            { question: "Pour ouvrir un nouvel onglet, le raccourci est :", options: ["Ctrl + T", "Ctrl + S", "Ctrl + A", "Ctrl + W"], correct: 0, explanation: "Ctrl + T ouvre un nouvel onglet dans votre navigateur.", section: 12 },
+            { question: "Le bureau de l'ordinateur représente :", options: ["Un lit", "Une table de travail", "Une armoire", "Une fenêtre fermée"], correct: 1, explanation: "Le bureau est votre table de travail numérique où vous pouvez poser des icônes, des raccourcis, etc.", section: 11 },
+            { question: "Une icône peut être déplacée comme :", options: ["Un objet posé sur une table", "Une voiture sur la route", "Une porte", "Un animal"], correct: 0, explanation: "Les icônes sur le bureau sont comme des objets sur une table : vous pouvez les déplacer, les ranger ou les supprimer.", section: 11 },
+            { question: "Un programme est :", options: ["Une salle spécialisée pour une tâche", "Une image décorative", "Un bouton", "Une prise USB"], correct: 0, explanation: "Un programme est comme une salle spécialisée : Word pour écrire, Excel pour les calculs, VLC pour les vidéos, etc.", section: 13 },
+            { question: "Pour ouvrir un programme, on fait :", options: ["Un clic simple", "Un clic droit", "Un double clic", "Un clic molette"], correct: 2, explanation: "Double-cliquer sur l'icône d'un programme l'ouvre, comme ouvrir la porte d'une salle.", section: 13 },
+            { question: "Pour fermer un programme, il faut cliquer sur :", options: ["Le bouton Réduire", "Le bouton Maximiser", "La croix en haut à droite", "Le bouton Démarrer"], correct: 2, explanation: "La croix en haut à droite ferme le programme, comme sortir d'une salle et fermer la porte derrière soi.", section: 13 },
+            { question: "Quel symbole indique qu'un site est sécurisé ?", options: ["Une étoile", "Un cadenas", "Un drapeau", "Un cercle rouge"], correct: 1, explanation: "Le cadenas dans la barre d'adresse indique que la connexion est sécurisée (HTTPS).", section: 8 },
+            { question: "Pour rester en sécurité sur Internet, il faut :", options: ["Cliquer sur tous les liens reçus", "Donner son mot de passe à ses amis", "Ne jamais vérifier les adresses", "Se méfier des liens suspects"], correct: 3, explanation: "Il faut toujours être vigilant : ne pas partager ses données personnelles, se méfier des liens suspects, vérifier le cadenas de sécurité.", section: 8 },
+            { question: "Si un programme ne répond plus, il faut :", options: ["Frapper l'écran", "Éteindre immédiatement l'ordinateur", "Fermer le programme et le rouvrir", "Appeler la police"], correct: 2, explanation: "Si un programme plante, fermez-le et rouvrez-le, comme rallumer la lumière dans une salle.", section: 13 }
+        ];
+
+        let currentSectionIndex = 0;
+        let currentQuestionIndex = 0;
+        let quizScore = 0;
+
+        function changeFontSize(delta) {
+            const current = parseFloat(getComputedStyle(document.body).fontSize);
+            let newSize = delta === 0 ? 17.6 : current + delta;
+            newSize = Math.max(14, Math.min(28, newSize));
+            document.body.style.fontSize = newSize + 'px';
+            localStorage.setItem('fontSize', newSize);
+        }
+
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+
+        let isSpeaking = false;
+
+        function speakSection() {
+            const text = document.getElementById('sectionContent').innerText;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'fr-FR';
+
+            if (isSpeaking) {
+                speechSynthesis.cancel();
+                isSpeaking = false;
+            } else {
+                speechSynthesis.speak(utterance);
+                isSpeaking = true;
+            }
+
+            utterance.onend = function() {
+                isSpeaking = false;
+            };
+        }
+
+        function saveProgress() {
+            localStorage.setItem('section', currentSectionIndex);
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('section');
+            if (saved) currentSectionIndex = parseInt(saved);
+            if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+            if (localStorage.getItem('fontSize')) document.body.style.fontSize = localStorage.getItem('fontSize') + 'px';
+        }
+
+        function loadSection(idx) {
+            currentSectionIndex = idx;
+            const s = sections[idx];
+            document.getElementById('sectionIcon').textContent = s.icon;
+            document.getElementById('sectionTitle').innerText = s.title;
+            document.getElementById('sectionContent').innerHTML = s.content;
+            updateProgressDots();
+            updateNavigation();
+            saveProgress();
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+        function nextSection() {
+            if (currentSectionIndex < sections.length - 1) loadSection(currentSectionIndex + 1);
+        }
+
+        function previousSection() {
+            if (currentSectionIndex > 0) loadSection(currentSectionIndex - 1);
+        }
+
+        function updateProgressDots() {
+            const dotsContainer = document.getElementById('progressDots');
+            dotsContainer.innerHTML = '';
+            sections.forEach((section, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (index === currentSectionIndex) dot.classList.add('active');
+                
+                // Rendre le dot cliquable
+                dot.style.cursor = 'pointer';
+                dot.title = section.title; // Affiche le titre au survol
+                
+                // Ajouter l'événement de clic
+                dot.onclick = () => {
+                    loadSection(index);
+                };
+                
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            prevBtn.disabled = currentSectionIndex === 0;
+            
+            if (currentSectionIndex === sections.length - 1) {
+                nextBtn.innerHTML = 'Commencer le Quiz 🎯';
+                nextBtn.className = 'btn btn-success';
+                nextBtn.onclick = startQuiz;
+            } else {
+                nextBtn.innerHTML = 'Suivant →';
+                nextBtn.className = 'btn btn-primary';
+                nextBtn.onclick = nextSection;
+            }
+        }
+
+        function startQuiz() {
+            document.getElementById('courseSection').classList.add('hidden');
+            document.getElementById('quizSection').classList.remove('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            loadQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestionIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('quizScore').textContent = `Score: ${quizScore}`;
+            document.getElementById('quizQuestion').textContent = question.question;
+            
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('quizProgressBar').style.width = progress + '%';
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            document.getElementById('explanation').style.display = 'none';
+        }
+
+        function selectAnswer(idx) {
+            const q = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((opt, i) => {
+                opt.classList.add(i === q.correct ? 'correct' : 'wrong');
+                opt.style.pointerEvents = 'none';
+            });
+            if (idx === q.correct) quizScore++;
+
+            const expl = document.getElementById('explanation');
+            expl.innerHTML = `<strong>${idx === q.correct ? '✅ Correct !' : '❌ Pas tout à fait'}</strong><br><br>${q.explanation}<br><br><button class="btn btn-primary" onclick="loadSection(${q.section}); document.getElementById('quizSection').classList.add('hidden'); document.getElementById('courseSection').classList.remove('hidden');">📚 Revoir cette partie</button>`;
+            expl.style.display = 'block';
+
+            document.getElementById('quizScore').innerText = `Score : ${quizScore}`;
+
+            setTimeout(() => {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 4000);
+        }
+
+        function showResults() {
+            document.getElementById('quizSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+            
+            const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+            
+            document.getElementById('finalScore').textContent = `${quizScore} / ${quizQuestions.length}`;
+            document.getElementById('finalPercentage').textContent = `${percentage}% de réussite`;
+            
+            const progressBar = document.getElementById('finalProgressBar');
+            
+            if (percentage >= 75) {
+                document.getElementById('resultsIcon').textContent = '🎉';
+                document.getElementById('resultsTitle').textContent = 'Félicitations !';
+                document.getElementById('resultsTitle').style.color = '#10b981';
+                document.getElementById('resultsMessage').textContent = 'Vous avez brillamment réussi !';
+                progressBar.style.background = 'linear-gradient(90deg, #10b981 0%, #059669 100%)';
+            } else if (percentage >= 50) {
+                document.getElementById('resultsIcon').textContent = '👍';
+                document.getElementById('resultsTitle').textContent = 'Bon travail !';
+                document.getElementById('resultsTitle').style.color = '#667eea';
+                document.getElementById('resultsMessage').textContent = 'Vous êtes sur la bonne voie !';
+                progressBar.style.background = 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)';
+            } else {
+                document.getElementById('resultsIcon').textContent = '💪';
+                document.getElementById('resultsTitle').textContent = 'Continuez !';
+                document.getElementById('resultsTitle').style.color = '#ff9800';
+                document.getElementById('resultsMessage').textContent = 'Relisez le cours et réessayez !';
+                progressBar.style.background = 'linear-gradient(90deg, #ff9800 0%, #f57c00 100%)';
+            }
+            
+            progressBar.style.width = percentage + '%';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generateDiploma() {
+            const name = document.getElementById('userName').value || "l'apprenant(e)";
+            document.getElementById('diplomaName').innerText = name;
+            document.getElementById('diplomaScore').innerText = `${quizScore}/${quizQuestions.length} (${Math.round((quizScore/quizQuestions.length)*100)}%)`;
+            document.getElementById('diplomaDate').innerText = new Date().toLocaleDateString('fr-FR');
+            document.getElementById('diplome').style.display = 'block';
+        
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            startQuiz();
+        }
+
+        function backToCourse() {
+            document.getElementById('courseSection').classList.remove('hidden');
+            document.getElementById('quizSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            loadSection(0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function printDiploma() {
+            // Génère le diplôme s’il n’est pas encore affiché
+            if (!document.getElementById('diplomaName').innerText) {
+                generateDiploma();
+            }
+
+            const name = document.getElementById('diplomaName').innerText;
+            const score = document.getElementById('diplomaScore').innerText;
+            const date = document.getElementById('diplomaDate').innerText;
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="fr">
+        <head>
+            <meta charset="UTF-8">
+            <title>Diplôme - ${name}</title>
+            <style>
+                @page { margin: 1cm; size: A4 portrait; }
+                body {
+                    font-family: Georgia, 'Times New Roman', serif;
+                    background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+                    height: 100vh;
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-image: 
+                        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%);
+                }
+                .diplome {
+                    width: 800px;
+                    max-width: 95vw;
+                    background: white;
+                    padding: 60px 80px;
+                    border: 15px double #667eea;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+                    text-align: center;
+                    position: relative;
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.04"><path d="M50,10 a40,40 0 1,0 0,80 a40,40 0 1,0 0,-80" fill="none" stroke="%23667eea" stroke-width="3"/><text x="50" y="55" font-family="Georgia" font-size="40" fill="%23667eea" text-anchor="middle">★</text></svg>');
+                    background-size: 150px;
+                }
+                .header {
+                    margin-bottom: 40px;
+                    color: #667eea;
+                    font-size: 48px;
+                    font-weight: bold;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                }
+                .title {
+                    font-size: 36px;
+                    color: #333;
+                    margin: 30px 0;
+                    line-height: 1.4;
+                }
+                .name {
+                    font-size: 52px;
+                    color: #667eea;
+                    font-weight: bold;
+                    margin: 40px 0;
+                    padding: 15px;
+                    background: linear-gradient(90deg, transparent, rgba(102,126,234,0.1), transparent);
+                    display: inline-block;
+                    border-radius: 10px;
+                }
+                .details {
+                    font-size: 24px;
+                    line-height: 2;
+                    color: #444;
+                }
+                .score {
+                    font-size: 28px;
+                    color: #10b981;
+                    font-weight: bold;
+                }
+                .footer {
+                    margin-top: 60px;
+                    font-style: italic;
+                    color: #666;
+                    font-size: 20px;
+                }
+                .signature {
+                    margin-top: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 50px;
+                    font-family: 'Dancing Script', cursive;
+                    font-size: 28px;
+                    color: #667eea;
+                }
+                .seal {
+                    position: absolute;
+                    bottom: 80px;
+                    right: 100px;
+                    width: 120px;
+                    height: 120px;
+                    background: radial-gradient(circle, #667eea33, transparent);
+                    border: 4px solid #667eea;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 40px;
+                    opacity: 0.7;
+                }
+                @media print {
+                    body { background: white; }
+                    .diplome { box-shadow: none; border: 12px double #667eea; }
+                }
+            </style>
+            <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <div class="diplome">
+                <div class="header">Certificat Officiel</div>
+                <h1 class="title">Diplôme d'Informatique de Base</h1>
+                
+                <p>Décerné avec fierté à</p>
+                <div class="name">${name}</div>
+                
+                <div class="details">
+                    pour avoir suivi avec succès la formation<br>
+                    et obtenu la note de <span class="score">${score}</span><br>
+                    Fait le ${date}
+                </div>
+                
+                <div class="footer">
+                    Continuez à explorer le monde numérique avec confiance !<br>
+                    <strong>Vous êtes désormais prêt(e) à utiliser votre ordinateur en toute autonomie.</strong>
+                </div>
+                
+                <div class="signature">
+                    <div>La formatrice virtuelle</div>
+                    <div>Direction pédagogique</div>
+                </div>
+                
+                <div class="seal">✓</div>
+            </div>
+        </body>
+        </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            
+            // Petite attente pour que les polices se chargent
+            setTimeout(() => printWindow.print(), 800);
+    }
+
+        window.onload = () => {
+            loadProgress();
+            loadSection(currentSectionIndex);
+        };
+    </script>
+</body>
+</html>
