@@ -50,8 +50,11 @@ Une plateforme conçue pour **accompagner les débutants** (seniors, personnes �
 ## **🚀 Installation & Utilisation**
 ### **1️⃣ Cloner le dépôt**
 ```bash
-git clone https://github.com/votre-utilisateur/lutte-fracture-numerique.git
+git clone https://github.com/BrunoDevCraft/Lutte_contre_fracture_numerique.git
 ```
+### **1️⃣.1️⃣ Télécharger**
+-Aller dans "dist"
+-Sélectionner "
 ### **2️⃣ Lancer l’application**
 - Ouvrir `lutte_fracture_numerique.html` dans un navigateur.
 ### **3️⃣ Hébergement (optionnel)**
@@ -120,6 +123,7 @@ lutte-fracture-numerique/
 ---
 **🌟 Partagez ce projet pour réduire la fracture numérique !**
 *Un petit ⭐ [star] sur GitHub ? Ça motive énormément !* 🚀
+
 
 
 
