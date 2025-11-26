@@ -52,11 +52,21 @@ Une plateforme conçue pour **accompagner les débutants** (seniors, personnes �
 ```bash
 git clone https://github.com/BrunoDevCraft/Lutte_contre_fracture_numerique.git
 ```
-### **1️⃣.1️⃣ Télécharger**
--Aller dans "dist"
--Sélectionner "
+## ** O%**
+
+### **1️⃣ Télécharger le programme**
+- Aller dans le dossier "dist";
+- Sélectionner "Lutte_fracture_numerique_01.0.0.exe"
+- Ouvrir ce fichier, puis cliquer sur télécharger"
+ 
 ### **2️⃣ Lancer l’application**
 - Ouvrir `lutte_fracture_numerique.html` dans un navigateur.
+  ## ** O%**
+- Démarrer le programme "Lutte_fracture_numerique_01.0.0.exe" dans les téléchargment
+
+### **ATTENTION: Ce fichier "*.exe" n'est pas signer donc certains antivirus le bloque car le considère comme une menace
+Si c'est le cas pour vous, utiliser le programme via le fichier "*.htlm"**
+   
 ### **3️⃣ Hébergement (optionnel)**
 Déployez sur **GitHub Pages**, **Netlify** ou **Vercel** pour un accès en ligne.
 
@@ -123,6 +133,7 @@ lutte-fracture-numerique/
 ---
 **🌟 Partagez ce projet pour réduire la fracture numérique !**
 *Un petit ⭐ [star] sur GitHub ? Ça motive énormément !* 🚀
+
 
 
 
