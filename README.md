@@ -55,7 +55,7 @@ git clone https://github.com/BrunoDevCraft/Lutte_contre_fracture_numerique.git
 ## Où
 
 ### **1️⃣ Télécharger le programme**
-- Aller dans le dossier "dist";
+- Aller dans "tag";
 - Sélectionner "Lutte_fracture_numerique_01.0.0.exe"
 - Ouvrir ce fichier, puis cliquer sur télécharger"
  
@@ -132,6 +132,7 @@ lutte-fracture-numerique/
 ---
 **🌟 Partagez ce projet pour réduire la fracture numérique !**
 *Un petit ⭐ [star] sur GitHub ? Ça motive énormément !* 🚀
+
 
 
 
